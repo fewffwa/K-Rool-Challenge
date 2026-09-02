@@ -40,4 +40,5 @@ build/src/main.o: src\main.c include\modding.h include\recomputils.h \
   dk64_decomp\include\2.0L\PR\sp.h dk64_decomp\include\2.0L\PR\ucode.h \
   dk64_decomp\include\2.0L\PR\ultraerror.h \
   dk64_decomp\include\2.0L\PR\ultralog.h include\enums.h \
-  include\common_structs.h include\dummystruct.h
+  include\common_structs.h include\dummystruct.h \
+  include\Player_Progress_Structs.h

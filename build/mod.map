@@ -1,35 +1,50 @@
      VMA      LMA     Size Align Out     In      Symbol
        0        0        0     1 RAMBASE = 0x81000000
-81000000 81000000        0    16 .text
-81000000 81000000        0    16         build/src/main.o:(.text)
-81000000 81000000       20     4 .recomp_import.*
-81000000 81000000       20     4         build/src/main.o:(.recomp_import.*)
-81000000 81000000        8     1                 recomp_alloc
-81000008 81000008        8     1                 recomp_free
-81000010 81000010       10     1                 recomp_printf
-81000020 81000020      248     4 .recomp_patch
-81000020 81000020      248     4         build/src/main.o:(.recomp_patch)
-81000020 81000020        8     1                 func_global_asm_8071261C
-81000028 81000028      188     1                 func_global_asm_80713C8C
-810001b0 810001b0       90     1                 func_global_asm_80712574
-81000240 81000240       28     1                 func_global_asm_80712628
-81000268 81000268      160     4 .recomp_callback.*:dk64recomp_every_frame
-81000268 81000268      160     4         build/src/main.o:(.recomp_callback.*:dk64recomp_every_frame)
-81000268 81000268      160     1                 OpenIsles
-810003d0 810003d0        0    16 .data
-810003d0 810003d0        0    16         build/src/main.o:(.data)
-810003d0 810003d0        1    16 .bss
-810003d0 810003d0        1    16         build/src/main.o:(.bss)
-810003d0 810003d0        1     1                 helm_timer_started
+81000000 81000000       a0    16 .text
+81000000 81000000       a0    16         build/src/main.o:(.text)
+81000000 81000000       50     1                 getgbpoints
+81000050 81000050       50     1                 tallyScore
+810000a0 810000a0       20     4 .recomp_import.*
+810000a0 810000a0       20     4         build/src/main.o:(.recomp_import.*)
+810000a0 810000a0        8     1                 recomp_alloc
+810000a8 810000a8        8     1                 recomp_free
+810000b0 810000b0       10     1                 recomp_printf
+810000c0 810000c0      248     4 .recomp_patch
+810000c0 810000c0      248     4         build/src/main.o:(.recomp_patch)
+810000c0 810000c0        8     1                 func_global_asm_8071261C
+810000c8 810000c8      188     1                 func_global_asm_80713C8C
+81000250 81000250       90     1                 func_global_asm_80712574
+810002e0 810002e0       28     1                 func_global_asm_80712628
+81000308 81000308       18     4 .recomp_callback.*:recomp_on_new_file_start
+81000308 81000308       18     4         build/src/main.o:(.recomp_callback.*:recomp_on_new_file_start)
+81000308 81000308       18     1                 Setnewfile
+81000320 81000320       14     4 .recomp_callback.*:recomp_on_dirty_file_start
+81000320 81000320       14     4         build/src/main.o:(.recomp_callback.*:recomp_on_dirty_file_start)
+81000320 81000320       14     1                 Setdirtyfile
+81000334 81000334      174     4 .recomp_callback.*:dk64recomp_every_frame
+81000334 81000334      174     4         build/src/main.o:(.recomp_callback.*:dk64recomp_every_frame)
+81000334 81000334      174     1                 OpenIsles
+810004b0 810004b0        0    16 .data
+810004b0 810004b0        0    16         build/src/main.o:(.data)
+810004b0 810004b0        2    16 .bss
+810004b0 810004b0        2    16         build/src/main.o:(.bss)
+810004b0 810004b0        1     1                 isnewfile
+810004b1 810004b1        1     1                 helm_timer_started
+       0        0       20     4 .rel.text
+       0        0       20     4         build/src/main.o:(.rel.text)
        0        0        0     1 .mdebug.abi32
        0        0        0     1         build/src/main.o:(.mdebug.abi32)
        0        0      130     4 .rel.recomp_patch
        0        0      130     4         build/src/main.o:(.rel.recomp_patch)
-       0        0       a8     4 .rel.recomp_callback.*:dk64recomp_every_frame
-       0        0       a8     4         build/src/main.o:(.rel.recomp_callback.*:dk64recomp_every_frame)
-       0        0      220     4 .symtab
-       0        0      220     4         <internal>:(.symtab)
-       0        0       c3     1 .shstrtab
-       0        0       c3     1         <internal>:(.shstrtab)
-       0        0      1ad     1 .strtab
-       0        0      1ad     1         <internal>:(.strtab)
+       0        0       20     4 .rel.recomp_callback.*:recomp_on_new_file_start
+       0        0       20     4         build/src/main.o:(.rel.recomp_callback.*:recomp_on_new_file_start)
+       0        0       20     4 .rel.recomp_callback.*:recomp_on_dirty_file_start
+       0        0       20     4         build/src/main.o:(.rel.recomp_callback.*:recomp_on_dirty_file_start)
+       0        0       b8     4 .rel.recomp_callback.*:dk64recomp_every_frame
+       0        0       b8     4         build/src/main.o:(.rel.recomp_callback.*:dk64recomp_every_frame)
+       0        0      2a0     4 .symtab
+       0        0      2a0     4         <internal>:(.symtab)
+       0        0      189     1 .shstrtab
+       0        0      189     1         <internal>:(.shstrtab)
+       0        0      1fc     1 .strtab
+       0        0      1fc     1         <internal>:(.strtab)

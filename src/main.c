@@ -4,6 +4,7 @@
 #include "common_structs.h"
 #include "recomputils.h"
 #include "dummystruct.h"
+#include "Player_Progress_Structs.h"
 
 extern void setFlag(s16 flagIndex, u8 newValue, u8 flagType);
 extern Struct80755340 D_global_asm_80755340;
@@ -15,7 +16,6 @@ extern void func_global_asm_8071261C(void);
 extern void func_global_asm_80713C8C(void);
 extern u16 D_global_asm_8075531C;
 extern OSTime D_global_asm_807445B0;
-#define initHelmTimer func_global_asm_80712574
 extern u8 isFlagSet(s16 flagIndex, u8 flagType);
 extern void playSong(MUSIC_E arg0, f32 arg1);
 extern u32 global_properties_bitfield;
@@ -24,6 +24,10 @@ extern void func_global_asm_807127B4(void);
 extern u64 __ull_div(u64, u64);
 extern u8 func_global_asm_80712628(void);
 extern u8 D_global_asm_80755350;
+extern s32 func_global_asm_806C9D7C(void);
+extern PlayerProgress D_global_asm_807FC950[4];
+extern u8 current_character_index[];
+#define initHelmTimer func_global_asm_80712574
 
 RECOMP_PATCH void func_global_asm_8071261C(void) {
 }
@@ -57,9 +61,8 @@ RECOMP_PATCH void func_global_asm_80713C8C(void) {
     }
 }
 
-
-
 static u8 helm_timer_started = 0;
+static u8 isnewfile = 0;
 
 RECOMP_PATCH void initHelmTimer(void) {
     u32 i;
@@ -78,7 +81,6 @@ RECOMP_PATCH void initHelmTimer(void) {
     }
 }
 
-
 RECOMP_PATCH u8 func_global_asm_80712628(void){
 if (D_global_asm_80755350) { // Helm Timer enabled
   if (global_properties_bitfield & 3) { // Game is paused
@@ -90,12 +92,48 @@ return FALSE;
 }
 
 
+RECOMP_CALLBACK("*", recomp_on_new_file_start) void Setnewfile(void) {
+    isnewfile = 1;
+    helm_timer_started = 0;
+}
+
+RECOMP_CALLBACK("*", recomp_on_dirty_file_start) void Setdirtyfile(void) {
+    isnewfile = 0;
+    helm_timer_started = 0;
+}
+s32 getgbpoints(void){
+    s32 new_var;
+
+    PlayerProgress *new_var2;
+    s32 levelIndex;
+    s32 kong;
+    s32 levelindex;
+    new_var2 = &D_global_asm_807FC950[0];
+    new_var = 14;
+    s32 totalGBs = 0;
+        for (levelIndex = 0; levelIndex < new_var; levelIndex++) {
+        for (kong = 0; kong < 5; kong++) {
+            totalGBs += new_var2->character_progress[kong].golden_bananas[levelIndex];
+        }
+    } 
+    return totalGBs * 2;
+}
+s32 tallyScore(void){
+    s32 Score = getgbpoints();
+return Score;
+}
+
+
+
 RECOMP_CALLBACK("*", dk64recomp_every_frame) void OpenIsles(void) {
-        if (gameIsInAdventureMode()) {
-            if (!helm_timer_started) {
-            setFlag(0x304, TRUE, FLAG_TYPE_PERMANENT);
-            initHelmTimer();
-            helm_timer_started = 1;
+    if (isnewfile){
+            if (gameIsInAdventureMode()) {
+                if (!helm_timer_started) {
+                setFlag(0x304, TRUE, FLAG_TYPE_PERMANENT);
+                initHelmTimer();
+                helm_timer_started = 1;
+                tallyScore();
+            }
         }
     }
 }
