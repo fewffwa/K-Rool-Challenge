@@ -1,0 +1,20 @@
+# Fields that end up in the mod's manifest.
+[manifest]
+id = "KRoolChallenge"
+version = "1.0.0"
+display_name = "K-Rool's Blast-O-Matic Challenge"
+description =  "Get as many points as you can before the island is destroyed in this Blast-o-matic extravaganza!"
+short_description = "A score-attack mode."
+authors = [ "Fewffwa" ]
+game_id = "dk64"
+minimum_recomp_version = "1.0.0"
+dependencies = ["OpenIsles:1.0.0"]
+
+
+# Inputs to the mod tool.
+[inputs]
+elf_path = "build/mod.elf"
+mod_filename = "KRoolChallenge"
+func_reference_syms_file = "Dk64Syms/dump.toml"
+data_reference_syms_files = [ "Dk64Syms/data_dump.toml" ]
+additional_files = ["thumb.dds"]
