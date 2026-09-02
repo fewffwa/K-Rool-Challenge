@@ -7,26 +7,29 @@
 81000000 81000000        8     1                 recomp_alloc
 81000008 81000008        8     1                 recomp_free
 81000010 81000010       10     1                 recomp_printf
-81000020 81000020       90     4 .recomp_patch
-81000020 81000020       90     4         build/src/main.o:(.recomp_patch)
-81000020 81000020       90     1                 func_global_asm_80712574
-810000b0 810000b0      144     4 .recomp_callback.*:dk64recomp_every_frame
-810000b0 810000b0      144     4         build/src/main.o:(.recomp_callback.*:dk64recomp_every_frame)
-810000b0 810000b0      144     1                 OpenIsles
-81000200 81000200        0    16 .data
-81000200 81000200        0    16         build/src/main.o:(.data)
-81000200 81000200        1    16 .bss
-81000200 81000200        1    16         build/src/main.o:(.bss)
-81000200 81000200        1     1                 helm_timer_started
+81000020 81000020      248     4 .recomp_patch
+81000020 81000020      248     4         build/src/main.o:(.recomp_patch)
+81000020 81000020        8     1                 func_global_asm_8071261C
+81000028 81000028      188     1                 func_global_asm_80713C8C
+810001b0 810001b0       90     1                 func_global_asm_80712574
+81000240 81000240       28     1                 func_global_asm_80712628
+81000268 81000268      160     4 .recomp_callback.*:dk64recomp_every_frame
+81000268 81000268      160     4         build/src/main.o:(.recomp_callback.*:dk64recomp_every_frame)
+81000268 81000268      160     1                 OpenIsles
+810003d0 810003d0        0    16 .data
+810003d0 810003d0        0    16         build/src/main.o:(.data)
+810003d0 810003d0        1    16 .bss
+810003d0 810003d0        1    16         build/src/main.o:(.bss)
+810003d0 810003d0        1     1                 helm_timer_started
        0        0        0     1 .mdebug.abi32
        0        0        0     1         build/src/main.o:(.mdebug.abi32)
-       0        0       48     4 .rel.recomp_patch
-       0        0       48     4         build/src/main.o:(.rel.recomp_patch)
-       0        0       a0     4 .rel.recomp_callback.*:dk64recomp_every_frame
-       0        0       a0     4         build/src/main.o:(.rel.recomp_callback.*:dk64recomp_every_frame)
-       0        0      150     4 .symtab
-       0        0      150     4         <internal>:(.symtab)
+       0        0      130     4 .rel.recomp_patch
+       0        0      130     4         build/src/main.o:(.rel.recomp_patch)
+       0        0       a8     4 .rel.recomp_callback.*:dk64recomp_every_frame
+       0        0       a8     4         build/src/main.o:(.rel.recomp_callback.*:dk64recomp_every_frame)
+       0        0      220     4 .symtab
+       0        0      220     4         <internal>:(.symtab)
        0        0       c3     1 .shstrtab
        0        0       c3     1         <internal>:(.shstrtab)
-       0        0       bd     1 .strtab
-       0        0       bd     1         <internal>:(.strtab)
+       0        0      1ad     1 .strtab
+       0        0      1ad     1         <internal>:(.strtab)
