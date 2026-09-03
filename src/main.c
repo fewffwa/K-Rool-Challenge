@@ -34,7 +34,7 @@ extern Actor *gCurrentActorPointer;
 extern Gfx **D_1000118;;
 extern void addActorToTextOverlayRenderArray(void *arg0, Actor *arg1, u8 arg2);
 extern s32 countSetFlags(s32 startIndex, s32 length, u8 flagType);
-
+extern Maps current_map;
 
 #define initHelmTimer func_global_asm_80712574
 
@@ -56,6 +56,9 @@ RECOMP_PATCH void func_global_asm_80713C8C(void) {
     if (isFlagSet(PERMFLAG_PROGRESS_HELM_SHUTDOWN, 0U)) {
         func_global_asm_8071261C();
         playSong(MUSIC_116_HIDEOUT_HELM_BLAST_O_MATIC_OFF, 1.0f);
+    }
+    if (isFlagSet(PERMFLAG_PROGRESS_K_ROOL_DEFEATED, 0U)) {
+       return;
     }
     D_global_asm_80755340.unk0 += D_global_asm_807445B0;
     if (global_properties_bitfield & 2) {
@@ -187,8 +190,12 @@ s32 getcompanycoinpoints(void){
     return coinflags*10;
 }
 
+s32 getkroolbonus(void){
+    return isFlagSet(PERMFLAG_PROGRESS_K_ROOL_DEFEATED, FLAG_TYPE_PERMANENT)*20;
+}
+
 s32 tallyScore(void){
-    s32 Score = getgbpoints()+getblueprintpoints()+getfairypoints()+getmedalpoints()+getcrownpoints()+getcompanycoinpoints()+getkeypoints();
+    s32 Score = getgbpoints()+getblueprintpoints()+getfairypoints()+getmedalpoints()+getcrownpoints()+getcompanycoinpoints()+getkeypoints()+getkroolbonus();
 return Score;
 }
 
