@@ -1,8 +1,8 @@
-# OpenIsles
+# K-Rool's Blast-O-Matic Challenge
 
-Unlock Mystery Menu is a mod for Donkey Kong 64: That unlocks the mystery menu and all of its options by default
+Take K-Rool's Blast-O-Matic Challenge today! See how many collectables you can get in one hour! Can you defeat the king while getting a high score?
 ## Installation
-1. Download the latest `OpenIsles.nrm` from Releases.
+1. Download the latest `KRoolChallenge.nrm` from Releases.
 2. Put the file in your DK64 Recompiled mods folder.
    - Example (Windows): `C:\Users\<YourUser>\AppData\Local\DK64Recompiled\mods`
 3. Launch DK64 Recompiled and enable the mod from the mods menu.
@@ -38,14 +38,14 @@ PowerShell example:
 .\RecompModTool.exe .\mod.toml C:\Users\<YourUser>\AppData\Local\DK64Recompiled\mods
 ```
 
-The produced mod file is named `OpenIsles.nrm`.
+The produced mod file is named `KRoolChallenge.nrm`.
 
 ## Project Layout
-- `src/tag_anywhere.c`: Main gameplay patch logic.
+- `src/main.c`: Main gameplay patch logic.
 - `mod.toml`: Mod metadata, target game id, and packaging inputs.
 - `dk64_decomp/`: Decompiled DK64 source and headers used by the build.
 - `Dk64Syms/`: Symbol files used by RecompModTool.
 
 ## Credits
 - Fewffwa (mod creator)
-- Ballaam (readme template)
+- Ballaam (readme template & programming help)

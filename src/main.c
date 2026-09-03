@@ -35,8 +35,10 @@ extern Gfx **D_1000118;;
 extern void addActorToTextOverlayRenderArray(void *arg0, Actor *arg1, u8 arg2);
 extern s32 countSetFlags(s32 startIndex, s32 length, u8 flagType);
 extern Maps current_map;
+extern int func_global_asm_80714464(void);
 
 #define initHelmTimer func_global_asm_80712574
+#define gameIsInEndSequenceMode func_global_asm_80714464
 
 RecompuiContext ui_context;
 RecompuiResource score_label;
@@ -191,7 +193,7 @@ s32 getcompanycoinpoints(void){
 }
 
 s32 getkroolbonus(void){
-    return isFlagSet(PERMFLAG_PROGRESS_K_ROOL_DEFEATED, FLAG_TYPE_PERMANENT)*20;
+    return isFlagSet(PERMFLAG_PROGRESS_K_ROOL_DEFEATED, FLAG_TYPE_PERMANENT)*30;
 }
 
 s32 tallyScore(void){
@@ -236,7 +238,7 @@ void deletescoreui(void) {
 
 RECOMP_CALLBACK("*", dk64recomp_every_frame) void KRoolChallenge(void) {
     if (isnewfile){
-            if (gameIsInAdventureMode()|| gameIsInQuitGameMode()) {
+            if (gameIsInAdventureMode()|| gameIsInQuitGameMode()||gameIsInEndSequenceMode()) {
                 if (!helm_timer_started) {
                 initHelmTimer();
                 helm_timer_started = 1;
@@ -247,7 +249,7 @@ RECOMP_CALLBACK("*", dk64recomp_every_frame) void KRoolChallenge(void) {
 
 
 if (filehasstarted){
-        if (!gameIsInAdventureMode()&& !gameIsInQuitGameMode()) {
+        if (!gameIsInAdventureMode()&& !gameIsInQuitGameMode()&& !gameIsInEndSequenceMode()) {
              if (score_label != RECOMPUI_NULL_RESOURCE) {
                 deletescoreui();  
             }  
