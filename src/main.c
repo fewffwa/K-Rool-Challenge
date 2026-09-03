@@ -5,6 +5,7 @@
 #include "recomputils.h"
 #include "dummystruct.h"
 #include "Player_Progress_Structs.h"
+#include "recompui.h"
 
 extern void setFlag(s16 flagIndex, u8 newValue, u8 flagType);
 extern Struct80755340 D_global_asm_80755340;
@@ -12,6 +13,7 @@ extern u16 D_global_asm_80755358[];
 extern s32 func_global_asm_80712548(void);
 extern void func_global_asm_80712574(void);
 extern int gameIsInAdventureMode(void);
+extern int gameIsInQuitGameMode(void);
 extern void func_global_asm_8071261C(void);
 extern void func_global_asm_80713C8C(void);
 extern u16 D_global_asm_8075531C;
@@ -27,7 +29,17 @@ extern u8 D_global_asm_80755350;
 extern s32 func_global_asm_806C9D7C(void);
 extern PlayerProgress D_global_asm_807FC950[4];
 extern u8 current_character_index[];
+extern Gfx *printStyledText(Gfx *dl, s16 style, s16 x, s16 y, u8 *string, u32 extraBitfield);
+extern Actor *gCurrentActorPointer;
+extern Gfx **D_1000118;;
+extern void addActorToTextOverlayRenderArray(void *arg0, Actor *arg1, u8 arg2);
+extern s32 countSetFlags(s32 startIndex, s32 length, u8 flagType);
+
+
 #define initHelmTimer func_global_asm_80712574
+
+RecompuiContext ui_context;
+RecompuiResource score_label;
 
 RECOMP_PATCH void func_global_asm_8071261C(void) {
 }
@@ -63,6 +75,7 @@ RECOMP_PATCH void func_global_asm_80713C8C(void) {
 
 static u8 helm_timer_started = 0;
 static u8 isnewfile = 0;
+static u8 filehasstarted = 0;
 
 RECOMP_PATCH void initHelmTimer(void) {
     u32 i;
@@ -95,11 +108,42 @@ return FALSE;
 RECOMP_CALLBACK("*", recomp_on_new_file_start) void Setnewfile(void) {
     isnewfile = 1;
     helm_timer_started = 0;
+    filehasstarted = 1;
+     ui_context = recompui_create_context();
+    recompui_open_context(ui_context);
+
+    RecompuiResource root = recompui_context_root(ui_context);
+
+    score_label = recompui_create_label(
+        ui_context,
+        root,
+        "Score: 0",
+        LABELSTYLE_NORMAL
+    );
+
+    recompui_show_context(ui_context);
+    recompui_close_context(ui_context);
 }
 
 RECOMP_CALLBACK("*", recomp_on_dirty_file_start) void Setdirtyfile(void) {
     isnewfile = 0;
     helm_timer_started = 0;
+    filehasstarted = 1;
+     ui_context = recompui_create_context();
+    recompui_open_context(ui_context);
+
+    RecompuiResource root = recompui_context_root(ui_context);
+
+    score_label = recompui_create_label(
+        ui_context,
+        root,
+        "File in-progress detected! Please start a new file to start the challenge!",
+        LABELSTYLE_NORMAL
+    );
+    recompui_set_context_captures_input(ui_context, 0);
+    recompui_set_context_captures_mouse(ui_context, 0);
+    recompui_show_context(ui_context);
+    recompui_close_context(ui_context);
 }
 s32 getgbpoints(void){
     s32 new_var;
@@ -118,22 +162,88 @@ s32 getgbpoints(void){
     } 
     return totalGBs * 2;
 }
+s32 getblueprintpoints(void){
+    return countSetFlags(PERMFLAG_ITEM_BLUEPRINT_JAPES_DK, 40, FLAG_TYPE_PERMANENT);
+}
+
+s32 getfairypoints(void){
+    return countSetFlags(PERMFLAG_ITEM_FAIRY_JAPES_POOL, 20, FLAG_TYPE_PERMANENT)*5;
+}
+
+s32 getmedalpoints(void){
+    return countSetFlags(PERMFLAG_ITEM_MEDAL_JAPES_DK, 40, FLAG_TYPE_PERMANENT)*3;
+}
+
+s32 getcrownpoints(void){
+    return countSetFlags(PERMFLAG_ITEM_CROWN_JAPES, 10, FLAG_TYPE_PERMANENT)*5;
+}
+s32 getkeypoints(void){
+    s32 keyflags = (isFlagSet(PERMFLAG_ITEM_KEY_1,FLAG_TYPE_PERMANENT)) + (isFlagSet(PERMFLAG_ITEM_KEY_2,FLAG_TYPE_PERMANENT)) + (isFlagSet(PERMFLAG_ITEM_KEY_3,FLAG_TYPE_PERMANENT)) + (isFlagSet(PERMFLAG_ITEM_KEY_4,FLAG_TYPE_PERMANENT)) + (isFlagSet(PERMFLAG_ITEM_KEY_5,FLAG_TYPE_PERMANENT)) +(isFlagSet(PERMFLAG_ITEM_KEY_6,FLAG_TYPE_PERMANENT)) + (isFlagSet(PERMFLAG_ITEM_KEY_7,FLAG_TYPE_PERMANENT)) + (isFlagSet(PERMFLAG_ITEM_KEY_8,FLAG_TYPE_PERMANENT)); 
+    return keyflags*10;
+}
+
+s32 getcompanycoinpoints(void){
+    s32 coinflags= (isFlagSet(PERMFLAG_ITEM_NINTENDO_COIN,FLAG_TYPE_PERMANENT)) + (isFlagSet(PERMFLAG_ITEM_ISLES_RAREWARE_GB,FLAG_TYPE_PERMANENT));
+    return coinflags*10;
+}
+
 s32 tallyScore(void){
-    s32 Score = getgbpoints();
+    s32 Score = getgbpoints()+getblueprintpoints()+getfairypoints()+getmedalpoints()+getcrownpoints()+getcompanycoinpoints()+getkeypoints();
 return Score;
+}
+
+Gfx *TestGFX(Gfx *dl, Actor *ac){
+ char buf[8];
+ s32 displaynumber = tallyScore();
+    _sprintf(buf, "%d", displaynumber);
+    dl = printStyledText(dl, 3, 260, 80, (u8*)buf, 1);
+    return dl;
 }
 
 
 
-RECOMP_CALLBACK("*", dk64recomp_every_frame) void OpenIsles(void) {
+void updatescore(void){
+ char buffer[32];
+
+    s32 score = tallyScore();
+
+    _sprintf(buffer, "Score: %d", score);
+
+    recompui_open_context(ui_context);
+    recompui_set_context_captures_input(ui_context, 0);
+    recompui_set_context_captures_mouse(ui_context, 0);
+    recompui_set_text(score_label, buffer);    
+    recompui_close_context(ui_context);
+}
+
+void deletescoreui(void) {
+    recompui_open_context(ui_context);
+
+    RecompuiResource root = recompui_context_root(ui_context);
+    recompui_destroy_element(root, score_label);
+
+    recompui_close_context(ui_context);
+
+    score_label = RECOMPUI_NULL_RESOURCE;
+}
+
+RECOMP_CALLBACK("*", dk64recomp_every_frame) void KRoolChallenge(void) {
     if (isnewfile){
-            if (gameIsInAdventureMode()) {
+            if (gameIsInAdventureMode()|| gameIsInQuitGameMode()) {
                 if (!helm_timer_started) {
-                setFlag(0x304, TRUE, FLAG_TYPE_PERMANENT);
                 initHelmTimer();
                 helm_timer_started = 1;
-                tallyScore();
             }
+            updatescore();
         }
+}
+
+
+if (filehasstarted){
+        if (!gameIsInAdventureMode()&& !gameIsInQuitGameMode()) {
+             if (score_label != RECOMPUI_NULL_RESOURCE) {
+                deletescoreui();  
+            }  
     }
+}
 }

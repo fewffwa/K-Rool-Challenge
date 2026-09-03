@@ -1,50 +1,166 @@
      VMA      LMA     Size Align Out     In      Symbol
        0        0        0     1 RAMBASE = 0x81000000
-81000000 81000000       a0    16 .text
-81000000 81000000       a0    16         build/src/main.o:(.text)
-81000000 81000000       50     1                 getgbpoints
-81000050 81000050       50     1                 tallyScore
-810000a0 810000a0       20     4 .recomp_import.*
-810000a0 810000a0       20     4         build/src/main.o:(.recomp_import.*)
-810000a0 810000a0        8     1                 recomp_alloc
-810000a8 810000a8        8     1                 recomp_free
-810000b0 810000b0       10     1                 recomp_printf
-810000c0 810000c0      248     4 .recomp_patch
-810000c0 810000c0      248     4         build/src/main.o:(.recomp_patch)
-810000c0 810000c0        8     1                 func_global_asm_8071261C
-810000c8 810000c8      188     1                 func_global_asm_80713C8C
-81000250 81000250       90     1                 func_global_asm_80712574
-810002e0 810002e0       28     1                 func_global_asm_80712628
-81000308 81000308       18     4 .recomp_callback.*:recomp_on_new_file_start
-81000308 81000308       18     4         build/src/main.o:(.recomp_callback.*:recomp_on_new_file_start)
-81000308 81000308       18     1                 Setnewfile
-81000320 81000320       14     4 .recomp_callback.*:recomp_on_dirty_file_start
-81000320 81000320       14     4         build/src/main.o:(.recomp_callback.*:recomp_on_dirty_file_start)
-81000320 81000320       14     1                 Setdirtyfile
-81000334 81000334      174     4 .recomp_callback.*:dk64recomp_every_frame
-81000334 81000334      174     4         build/src/main.o:(.recomp_callback.*:dk64recomp_every_frame)
-81000334 81000334      174     1                 OpenIsles
-810004b0 810004b0        0    16 .data
-810004b0 810004b0        0    16         build/src/main.o:(.data)
-810004b0 810004b0        2    16 .bss
-810004b0 810004b0        2    16         build/src/main.o:(.bss)
-810004b0 810004b0        1     1                 isnewfile
-810004b1 810004b1        1     1                 helm_timer_started
-       0        0       20     4 .rel.text
-       0        0       20     4         build/src/main.o:(.rel.text)
+81000000 81000000       61     1 .rodata.str1.1
+81000000 81000000       61     1         <internal>:(.rodata.str1.1)
+81000070 81000070      44c    16 .text
+81000070 81000070      44c    16         build/src/main.o:(.text)
+81000070 81000070       50     1                 getgbpoints
+810000c0 810000c0       24     1                 getblueprintpoints
+810000e4 810000e4       2c     1                 getfairypoints
+81000110 81000110       2c     1                 getmedalpoints
+8100013c 8100013c       2c     1                 getcrownpoints
+81000168 81000168       a8     1                 getkeypoints
+81000210 81000210       48     1                 getcompanycoinpoints
+81000258 81000258      128     1                 tallyScore
+81000380 81000380       64     1                 TestGFX
+810003e4 810003e4       80     1                 updatescore
+81000464 81000464       58     1                 deletescoreui
+810004bc 810004bc      350     4 .recomp_import.*
+810004bc 810004bc      350     4         build/src/main.o:(.recomp_import.*)
+810004bc 810004bc        8     1                 recomp_alloc
+810004c4 810004c4        8     1                 recomp_free
+810004cc 810004cc       10     1                 recomp_printf
+810004dc 810004dc        8     1                 recompui_create_context
+810004e4 810004e4        8     1                 recompui_open_context
+810004ec 810004ec        8     1                 recompui_close_context
+810004f4 810004f4        8     1                 recompui_context_root
+810004fc 810004fc        8     1                 recompui_show_context
+81000504 81000504        8     1                 recompui_hide_context
+8100050c 8100050c        8     1                 recompui_set_context_captures_input
+81000514 81000514        8     1                 recompui_set_context_captures_mouse
+8100051c 8100051c        8     1                 recompui_create_style
+81000524 81000524        8     1                 recompui_create_element
+8100052c 8100052c        8     1                 recompui_destroy_element
+81000534 81000534        8     1                 recompui_create_button
+8100053c 8100053c        8     1                 recompui_create_label
+81000544 81000544        8     1                 recompui_create_textinput
+8100054c 8100054c        8     1                 recompui_create_passwordinput
+81000554 81000554        8     1                 recompui_create_labelradio
+8100055c 8100055c        8     1                 recompui_create_slider
+81000564 81000564        8     1                 recompui_create_imageview
+8100056c 8100056c        8     1                 recompui_set_visibility
+81000574 81000574        8     1                 recompui_set_position
+8100057c 8100057c        8     1                 recompui_set_left
+81000584 81000584        8     1                 recompui_set_top
+8100058c 8100058c        8     1                 recompui_set_right
+81000594 81000594        8     1                 recompui_set_bottom
+8100059c 8100059c        8     1                 recompui_set_width
+810005a4 810005a4        8     1                 recompui_set_width_auto
+810005ac 810005ac        8     1                 recompui_set_height
+810005b4 810005b4        8     1                 recompui_set_height_auto
+810005bc 810005bc        8     1                 recompui_set_min_width
+810005c4 810005c4        8     1                 recompui_set_min_height
+810005cc 810005cc        8     1                 recompui_set_max_width
+810005d4 810005d4        8     1                 recompui_set_max_height
+810005dc 810005dc        8     1                 recompui_set_padding
+810005e4 810005e4        8     1                 recompui_set_padding_left
+810005ec 810005ec        8     1                 recompui_set_padding_top
+810005f4 810005f4        8     1                 recompui_set_padding_right
+810005fc 810005fc        8     1                 recompui_set_padding_bottom
+81000604 81000604        8     1                 recompui_set_margin
+8100060c 8100060c        8     1                 recompui_set_margin_left
+81000614 81000614        8     1                 recompui_set_margin_top
+8100061c 8100061c        8     1                 recompui_set_margin_right
+81000624 81000624        8     1                 recompui_set_margin_bottom
+8100062c 8100062c        8     1                 recompui_set_margin_auto
+81000634 81000634        8     1                 recompui_set_margin_left_auto
+8100063c 8100063c        8     1                 recompui_set_margin_top_auto
+81000644 81000644        8     1                 recompui_set_margin_right_auto
+8100064c 8100064c        8     1                 recompui_set_margin_bottom_auto
+81000654 81000654        8     1                 recompui_set_border_width
+8100065c 8100065c        8     1                 recompui_set_border_left_width
+81000664 81000664        8     1                 recompui_set_border_top_width
+8100066c 8100066c        8     1                 recompui_set_border_right_width
+81000674 81000674        8     1                 recompui_set_border_bottom_width
+8100067c 8100067c        8     1                 recompui_set_border_radius
+81000684 81000684        8     1                 recompui_set_border_top_left_radius
+8100068c 8100068c        8     1                 recompui_set_border_top_right_radius
+81000694 81000694        8     1                 recompui_set_border_bottom_left_radius
+8100069c 8100069c        8     1                 recompui_set_border_bottom_right_radius
+810006a4 810006a4        8     1                 recompui_set_background_color
+810006ac 810006ac        8     1                 recompui_set_border_color
+810006b4 810006b4        8     1                 recompui_set_border_left_color
+810006bc 810006bc        8     1                 recompui_set_border_top_color
+810006c4 810006c4        8     1                 recompui_set_border_right_color
+810006cc 810006cc        8     1                 recompui_set_border_bottom_color
+810006d4 810006d4        8     1                 recompui_set_color
+810006dc 810006dc        8     1                 recompui_set_cursor
+810006e4 810006e4        8     1                 recompui_set_opacity
+810006ec 810006ec        8     1                 recompui_set_display
+810006f4 810006f4        8     1                 recompui_set_justify_content
+810006fc 810006fc        8     1                 recompui_set_flex_grow
+81000704 81000704        8     1                 recompui_set_flex_shrink
+8100070c 8100070c        8     1                 recompui_set_flex_basis_auto
+81000714 81000714        8     1                 recompui_set_flex_basis
+8100071c 8100071c        8     1                 recompui_set_flex_direction
+81000724 81000724        8     1                 recompui_set_align_items
+8100072c 8100072c        8     1                 recompui_set_overflow
+81000734 81000734        8     1                 recompui_set_overflow_x
+8100073c 8100073c        8     1                 recompui_set_overflow_y
+81000744 81000744        8     1                 recompui_set_text
+8100074c 8100074c        8     1                 recompui_set_font_size
+81000754 81000754        8     1                 recompui_set_letter_spacing
+8100075c 8100075c        8     1                 recompui_set_line_height
+81000764 81000764        8     1                 recompui_set_font_style
+8100076c 8100076c        8     1                 recompui_set_font_weight
+81000774 81000774        8     1                 recompui_set_text_align
+8100077c 8100077c        8     1                 recompui_set_gap
+81000784 81000784        8     1                 recompui_set_row_gap
+8100078c 8100078c        8     1                 recompui_set_column_gap
+81000794 81000794        8     1                 recompui_set_drag
+8100079c 8100079c        8     1                 recompui_set_tab_index
+810007a4 810007a4        8     1                 recompui_get_input_value_u32
+810007ac 810007ac        8     1                 recompui_get_input_value_float
+810007b4 810007b4        8     1                 recompui_get_input_text
+810007bc 810007bc        8     1                 recompui_set_input_value_u32
+810007c4 810007c4        8     1                 recompui_set_input_value_float
+810007cc 810007cc        8     1                 recompui_set_input_text
+810007d4 810007d4        8     1                 recompui_set_nav_auto
+810007dc 810007dc        8     1                 recompui_set_nav_none
+810007e4 810007e4        8     1                 recompui_set_nav
+810007ec 810007ec        8     1                 recompui_create_texture_rgba32
+810007f4 810007f4        8     1                 recompui_destroy_texture
+810007fc 810007fc        8     1                 recompui_set_imageview_texture
+81000804 81000804        8     1                 recompui_register_callback
+8100080c 8100080c      248     4 .recomp_patch
+8100080c 8100080c      248     4         build/src/main.o:(.recomp_patch)
+8100080c 8100080c        8     1                 func_global_asm_8071261C
+81000814 81000814      188     1                 func_global_asm_80713C8C
+8100099c 8100099c       90     1                 func_global_asm_80712574
+81000a2c 81000a2c       28     1                 func_global_asm_80712628
+81000a54 81000a54       84     4 .recomp_callback.*:recomp_on_new_file_start
+81000a54 81000a54       84     4         build/src/main.o:(.recomp_callback.*:recomp_on_new_file_start)
+81000a54 81000a54       84     1                 Setnewfile
+81000ad8 81000ad8       9c     4 .recomp_callback.*:recomp_on_dirty_file_start
+81000ad8 81000ad8       9c     4         build/src/main.o:(.recomp_callback.*:recomp_on_dirty_file_start)
+81000ad8 81000ad8       9c     1                 Setdirtyfile
+81000b74 81000b74      238     4 .recomp_callback.*:dk64recomp_every_frame
+81000b74 81000b74      238     4         build/src/main.o:(.recomp_callback.*:dk64recomp_every_frame)
+81000b74 81000b74      238     1                 KRoolChallenge
+81000db0 81000db0        0    16 .data
+81000db0 81000db0        0    16         build/src/main.o:(.data)
+81000db0 81000db0        c    16 .bss
+81000db0 81000db0        c    16         build/src/main.o:(.bss)
+81000db0 81000db0        1     1                 isnewfile
+81000db1 81000db1        1     1                 helm_timer_started
+81000db2 81000db2        1     1                 filehasstarted
+81000db4 81000db4        4     1                 ui_context
+81000db8 81000db8        4     1                 score_label
+       0        0      1c8     4 .rel.text
+       0        0      1c8     4         build/src/main.o:(.rel.text)
        0        0        0     1 .mdebug.abi32
        0        0        0     1         build/src/main.o:(.mdebug.abi32)
        0        0      130     4 .rel.recomp_patch
        0        0      130     4         build/src/main.o:(.rel.recomp_patch)
-       0        0       20     4 .rel.recomp_callback.*:recomp_on_new_file_start
-       0        0       20     4         build/src/main.o:(.rel.recomp_callback.*:recomp_on_new_file_start)
-       0        0       20     4 .rel.recomp_callback.*:recomp_on_dirty_file_start
-       0        0       20     4         build/src/main.o:(.rel.recomp_callback.*:recomp_on_dirty_file_start)
-       0        0       b8     4 .rel.recomp_callback.*:dk64recomp_every_frame
-       0        0       b8     4         build/src/main.o:(.rel.recomp_callback.*:dk64recomp_every_frame)
-       0        0      2a0     4 .symtab
-       0        0      2a0     4         <internal>:(.symtab)
-       0        0      189     1 .shstrtab
-       0        0      189     1         <internal>:(.shstrtab)
-       0        0      1fc     1 .strtab
-       0        0      1fc     1         <internal>:(.strtab)
+       0        0       b0     4 .rel.recomp_callback.*:recomp_on_new_file_start
+       0        0       b0     4         build/src/main.o:(.rel.recomp_callback.*:recomp_on_new_file_start)
+       0        0       d0     4 .rel.recomp_callback.*:recomp_on_dirty_file_start
+       0        0       d0     4         build/src/main.o:(.rel.recomp_callback.*:recomp_on_dirty_file_start)
+       0        0      1c0     4 .rel.recomp_callback.*:dk64recomp_every_frame
+       0        0      1c0     4         build/src/main.o:(.rel.recomp_callback.*:dk64recomp_every_frame)
+       0        0      a40     4 .symtab
+       0        0      a40     4         <internal>:(.symtab)
+       0        0      198     1 .shstrtab
+       0        0      198     1         <internal>:(.shstrtab)
+       0        0      d32     1 .strtab
+       0        0      d32     1         <internal>:(.strtab)
