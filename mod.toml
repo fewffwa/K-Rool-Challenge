@@ -3,7 +3,7 @@
 id = "KRoolChallenge"
 version = "1.0.0"
 display_name = "K-Rool's Blast-O-Matic Challenge"
-description =  "Get as many points as you can before the island is destroyed in this Blast-o-matic extravaganza!"
+description =  "Get as many points as you can before the island is destroyed in this Blast-o-matic extravaganza!\n Point Breakdown:\n Golden Bananas: 2\n Blueprints: 1\n Fairies: 5\n Medals: 3\n Crowns: 5\n Keys: 10\n Company Coins: 10\n K. Rool bonus: 30"
 short_description = "A score-attack mode."
 authors = [ "Fewffwa" ]
 game_id = "dk64"
